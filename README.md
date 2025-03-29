@@ -78,6 +78,9 @@ Despues de ejecutar los pasos de preprocesamiento 1-4 (minimos para poder grafic
 
 ![Image](./images/1.png)
 
+Despues de utilizar `K-MEANS` para la generacion de etiquetas, obtuvimos el siguiente resultado.
+
+![Image](./images/2.png)
 
 ## Entrenamiento
 

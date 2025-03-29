@@ -1,4 +1,3 @@
-from pandas.core.accessor import delegate_names
 from preprocess.encoding import CustomOneHotEncoding
 from preprocess.scaler import CustomScaler
 from sklearn.decomposition import PCA
@@ -23,9 +22,6 @@ def basic_preprocess(df):
     ])
     df = pd.DataFrame(pipe.fit_transform(df), index=df.index)
 
-    print(pca.explained_variance_ratio_.cumsum())
 
-#    targets = KMeans(n_clusters=2).fit_predict(df)
-#    print(silhouette_score(df, targets))
     return df
     
