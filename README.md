@@ -76,7 +76,7 @@ Con lo anterior, utilizando `OneHotEncoding`, quedaria en un total de 37 columna
 
 Despues de ejecutar los pasos de preprocesamiento 1-4 (minimos para poder graficar) obtenemos los siguientes resultados.
 
-![Image]("./images/1.png")
+![Image](./images/1.png)
 
 
 ## Entrenamiento
