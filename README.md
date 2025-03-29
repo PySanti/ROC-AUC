@@ -48,7 +48,7 @@ Contiene 134.203 valores Nan (30.6%), se eliminará la columna.
 
 ### Codificación
 
-8 de 18 columnas son categóricas.
+7 de 18 columnas son categóricas.
 
 La siguiente lista es el conjunto de variables categóricas con sus categorías.
 
