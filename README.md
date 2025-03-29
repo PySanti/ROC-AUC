@@ -91,7 +91,7 @@ No se estudiarán.
 
 ## Generación de etiquetas
 
-Después de ejecutar los pasos de preprocesamiento 1-4 ( mínimos para poder graficar) obtenemos los siguientes resultados.
+Después de ejecutar los pasos de preprocesamiento 0-4 ( mínimos para poder graficar) obtenemos los siguientes resultados.
 
 ![Image](./images/1.png)
 
