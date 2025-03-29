@@ -82,6 +82,11 @@ Despues de utilizar `K-MEANS` para la generacion de etiquetas, obtuvimos el sigu
 
 ![Image](./images/2.png)
 
+Ratio de varianza de PCA : 0.998
+silhouette_score despues de utilizar k-means :  0.98
+
+(Resultados que parecen demasiado buenos para ser verdad)
+
 ## Entrenamiento
 
 ## Evaluacion
