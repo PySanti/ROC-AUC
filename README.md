@@ -1,11 +1,10 @@
 # ROC-AUC
 
-Este sera un proyecto de clasificacion en donde el principal objetivo sera entender la utilidad de las tecnicas de evaluacion de algoritmos de aprendizaje supervisado denominadas como curvas `ROC` y `AUC`.
+Este será un proyecto de clasificación en donde el principal objetivo será entender la utilidad de las técnicas de evaluación de algoritmos de aprendizaje supervisado denominadas como curvas `ROC` y `AUC`.
 
-El [dataset](https://www.kaggle.com/datasets/rikdifos/credit-card-approval-prediction/discussion/119320) a utilizar contiene informacion sobre clientes de tarjetas de credito. La idea basicamente es crear un modelo de aprendizaje supervisado que clasifique en "buenos clientes" y "malos clientes".
+El [dataset](https://www.kaggle.com/datasets/rikdifos/credit-card-approval-prediction/discussion/119320) a utilizar contiene información sobre clientes de tarjetas de crédito. La idea básicamente es crear un modelo de aprendizaje supervisado que clasifique en "buenos clientes" y "malos clientes".
 
-Una dificultad de este ejercicio es que, no se incluye un target, por lo tanto, se deben utilizar estrategias de aprendizaje no supervisado para generarlas.
-
+Una dificultad de este ejercicio es que, no se incluye un target, por lo tanto, se deben utilizar estrategias de clustering para generarlas.
 
 
 ## Preprocesamiento
@@ -35,17 +34,23 @@ CNT_FAM_MEMBERS
 ```
 
 
-0- Duplicados: si se elimina la columna `ID`, el dataset presenta 348.472 elementos duplicados (79.45%).
+### Duplicados 
+
+Si se elimina la columna `ID`, el dataset presenta 348.472 elementos duplicados (79.45%).
 
 
 
-1- Manejo de nans: la unica columna con valores nan es `OCCUPATION_TYPE`.
+### Manejo de nans
 
-Contiene 134.203 valores Nan (30.6%), se eliminara la columna.
+La única columna con valores nan es `OCCUPATION_TYPE`.
 
-2- Codificacion: 8 de 18 columnas son categoricas ...
+Contiene 134.203 valores Nan (30.6%), se eliminará la columna.
 
-La siguiente lista es el conjunto de variables categoricas con sus categorias.
+### Codificación
+
+8 de 18 columnas son categóricas.
+
+La siguiente lista es el conjunto de variables categóricas con sus categorías.
 
 ```
 CODE_GENDER : 2
@@ -58,35 +63,49 @@ NAME_HOUSING_TYPE : 6
 
 ```
 
-Con lo anterior, utilizando `OneHotEncoding`, quedaria en un total de 37 columnas (17 - 7 + 27), una cantidad complemente viable.
+Con lo anterior, utilizando `OneHotEncoding`, quedaría en un total de 36 columnas (16 - 7 + 27), una cantidad, complemente viable.
 
-3- Scalers: se utilizara `RobustScaler` antes de `PCA`
+### Scalers
 
-4- Extraccion y seleccion de caracteristicas: se utilizara PCA para lidiar con graficacion de datos.
+Se utilizará `RobustScaler` antes de `PCA`.
 
-5- Outliers: se compararan los resultados graficos identificando casos anomalos.
+### Extracción y selección de características
 
-6- Desequilibrio de datos: se estudiara despues de generar las etiquetas.
+Se utilizará `PCA` para lidiar con graficacion de datos.
 
-7- Estudio de distribucion gaussiana de los datos: no se realizara.
+### Outliers
 
-8- Correlaciones: no se realizara.
+No se estudiará.
 
-## Generacion de etiquetas
+### Desequilibrio de datos
 
-Despues de ejecutar los pasos de preprocesamiento 1-4 (minimos para poder graficar) obtenemos los siguientes resultados.
+Se estudiará después de generar las etiquetas.
+
+### Estudio de distribución gaussiana de los datos
+
+No se realizará.
+
+### Correlaciones
+
+No se estudiarán.
+
+## Generación de etiquetas
+
+Después de ejecutar los pasos de preprocesamiento 1-4 ( mínimos para poder graficar) obtenemos los siguientes resultados.
 
 ![Image](./images/1.png)
 
-Despues de utilizar `K-MEANS` para la generacion de etiquetas, obtuvimos el siguiente resultado.
+Después de utilizar `K-MEANS` para la generación de etiquetas, obtuvimos el siguiente resultado.
 
 ![Image](./images/2.png)
 
+```
 Ratio de varianza de PCA : 0.998
-silhouette_score despues de utilizar k-means :  0.98
-
+silhouette_score después de utilizar k-means :  0.98
+```
 (Resultados que parecen demasiado buenos para ser verdad)
 
 ## Entrenamiento
 
-## Evaluacion
+## Evaluación
+
