@@ -10,13 +10,42 @@ Una dificultad de este ejercicio es que, no se incluye un target, por lo tanto, 
 
 ## Preprocesamiento
 
-1- Manejo de nans: la unica columna con valores nan es `COCUPATION_TYPE`.
+Shape del dataset: `(438557, 18)`
+
+Columnas del dataset:
+```
+ID
+CODE_GENDER
+FLAG_OWN_CAR
+FLAG_OWN_REALTY
+CNT_CHILDREN
+AMT_INCOME_TOTAL
+NAME_INCOME_TYPE
+NAME_EDUCATION_TYPE
+NAME_FAMILY_STATUS
+NAME_HOUSING_TYPE
+DAYS_BIRTH
+DAYS_EMPLOYED
+FLAG_MOBIL
+FLAG_WORK_PHONE
+FLAG_PHONE
+FLAG_EMAIL
+OCCUPATION_TYPE
+CNT_FAM_MEMBERS
+```
+
+
+0- Duplicados: si se elimina la columna `ID`, el dataset presenta 348.472 elementos duplicados (79.45%).
+
+
+
+1- Manejo de nans: la unica columna con valores nan es `OCCUPATION_TYPE`.
 
 Contiene 134.203 valores Nan (30.6%), se eliminara la columna.
 
 2- Codificacion: 8 de 18 columnas son categoricas ...
 
-La siguiente lista es el conjunto de variables categoricas con sus categorias diferentes.
+La siguiente lista es el conjunto de variables categoricas con sus categorias.
 
 ```
 CODE_GENDER : 2
@@ -29,21 +58,26 @@ NAME_HOUSING_TYPE : 6
 
 ```
 
-Con lo anterior, utilizando `OneHotEncoding`, quedaria en un total de 55 columnas (18 - 8 + 45)
+Con lo anterior, utilizando `OneHotEncoding`, quedaria en un total de 37 columnas (17 - 7 + 27), una cantidad complemente viable.
 
-3- Scalers:
+3- Scalers: se utilizara `RobustScaler` antes de `PCA`
 
-4- Extraccion y seleccion de caracteristicas:
+4- Extraccion y seleccion de caracteristicas: se utilizara PCA para lidiar con graficacion de datos.
 
-5- Outliers:
+5- Outliers: se compararan los resultados graficos identificando casos anomalos.
 
-6- Desequilibrio de datos:
+6- Desequilibrio de datos: se estudiara despues de generar las etiquetas.
 
-7- Estudio de distribucion gaussiana de los datos:
+7- Estudio de distribucion gaussiana de los datos: no se realizara.
 
-8- Correlaciones:
+8- Correlaciones: no se realizara.
 
 ## Generacion de etiquetas
+
+Despues de ejecutar los pasos de preprocesamiento 1-4 (minimos para poder graficar) obtenemos los siguientes resultados.
+
+![Image]("./images/1.png")
+
 
 ## Entrenamiento
 
