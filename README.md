@@ -105,7 +105,15 @@ silhouette_score después de utilizar k-means :  0.98
 ```
 (Resultados que parecen demasiado buenos para ser verdad)
 
+Finalmente, las etiquetas resultaron de la siguiente manera:
+
+```
+0 : 74398 (82.59%)
+1 : 15687 (17.41%)
+
+```
+
 ## Entrenamiento
 
-## Evaluación
 
+## Evaluación
