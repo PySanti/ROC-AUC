@@ -4,6 +4,7 @@ from sklearn.decomposition import PCA
 import pandas as pd
 from sklearn.pipeline import Pipeline
 from preprocess.outliers_info import outliers_info
+from sklearn.model_selection import train_test_split
 
 
 
@@ -11,17 +12,19 @@ from preprocess.outliers_info import outliers_info
 byebye_columns = ["OCCUPATION_TYPE", "ID"]
 
 def basic_preprocess(df):
-    pca = PCA(n_components=2)
 
     df = df.drop(byebye_columns, axis=1)
     df = df.drop_duplicates()
+    cat_columns = df.select_dtypes(include="object").columns.tolist()
+    num_columns = df.select_dtypes(exclude="object").columns.tolist()
+
+    df_train, df_test = train_test_split(df, test_size=0.2, shuffle=True, random_state=42)
 
     pipe = Pipeline(steps=[
-        ("encoding", CustomOneHotEncoding(df.select_dtypes(include="object").columns.tolist())),
-        ("scaler", CustomScaler(df.select_dtypes(exclude="object").columns.tolist())),
-        ("pca", pca),
+        ("encoding", CustomOneHotEncoding(cat_columns)),
+        ("scaler", CustomScaler(num_columns)),
     ])
-    df = pd.DataFrame(pipe.fit_transform(df), index=df.index)
+    df_train = pd.DataFrame(pipe.fit_transform(df_train), index=df_train.index)
+    df_test = pd.DataFrame(pipe.transform(df_test), index=df_test.index)
 
-    print(f"Ratio de varianza de PCA : {sum(pca.explained_variance_ratio_)}")
-    return df
+    return [df_train, df_test]

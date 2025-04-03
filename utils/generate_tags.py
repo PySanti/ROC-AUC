@@ -7,6 +7,6 @@ def generate_tags(df):
         para generar las etiquetas
     """
     targets = KMeans(n_clusters=2).fit_predict(df)
-    print(f"silhouette_score despues de utilizar k-means : ",silhouette_score(df, targets))
+    print(f"silhouette_score despues de utilizar k-means : {silhouette_score(df, targets):.3f}")
     df['target'] = targets
     return df
