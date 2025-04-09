@@ -97,6 +97,7 @@ def plot_precision_recall_curve(model, X_test, y_test):
 y_scores = model.predict_proba(df_test.drop(TARGET, axis=1))[:, 1]  
 
 best_thr = find_best_threshold()
+print(best_thr)
 worst_thr = 0.5
 
 y_pred_custom_best = np.array((y_scores >= best_thr).astype(int))
@@ -111,5 +112,4 @@ y_pred = model.predict(df_test.drop(TARGET, axis=1))
 print(f"Cantidad de 1s para el umbral clasico: {np.sum(y_pred==1)}")
 print(f"Cantidad de 0s para el umbral clasico: {np.sum(y_pred==0)}")
 
-plot_roc_curve(model, df_test.drop(TARGET, axis=1), df_test[TARGET])
-plot_precision_recall_curve(model, df_test.drop(TARGET, axis=1), df_test[TARGET])
+model_performance(best_thr)

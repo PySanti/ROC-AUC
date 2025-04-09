@@ -159,3 +159,30 @@ Clase negativa : 0.999
 ### Curva PR
 
 ![Image](./images/4.png)
+
+Luego, el mejor umbral es el siguiente:
+
+```
+0.00226
+```
+
+Luego, el `f1_score` del modelo para el conjunto de test utilizando el mejor umbral es el siguiente:
+
+```
+Clase positiva : 0.997
+Clase negativa : 0.999
+```
+
+Como curiosisdad, quisimos revisar un experimento para confirmar que, internamente, los modelos de scikit-learn utilizan 0.5 como el umbral por defecto, entonces hicimos lo siguiente:
+
+
+```
+Cantidad de 1s para el mejor umbral : 3249
+Cantidad de 0s para el mejor umbral : 14768
+
+Cantidad de 1s para 0.5 (manualmente): 3215
+Cantidad de 0s para 0.5 (manualmente): 14802
+
+Cantidad de 1s para el umbral clasico (.predict()): 3215
+Cantidad de 0s para el umbral clasico (.predict()): 14802
+```
