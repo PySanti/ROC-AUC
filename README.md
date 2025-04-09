@@ -145,3 +145,17 @@ El algoritmo que utilizamos para realizar pruebas fue `Naive bayes`
 
 ## Evaluación
 
+En principio, el rendimiento que dio el modelo para la metrica de evaluacion mas clasica (`f1_score`), fue el siguiente (para el conjunto de test):
+
+```
+Clase positiva : 0.994
+Clase negativa : 0.999
+```
+
+### Curva ROC
+
+![Image](./images/3.png)
+
+### Curva PR
+
+![Image](./images/4.png)

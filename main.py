@@ -1,4 +1,6 @@
-from pandas._libs.writers import word_len
+import numpy as np  
+import matplotlib.pyplot as plt  
+from sklearn.metrics import roc_curve, roc_auc_score, precision_recall_curve, average_precision_score  
 from sklearn.metrics import precision_recall_curve
 import numpy as np
 import pandas as pd
@@ -50,6 +52,48 @@ def model_performance(threshold=None):
     print(f"Clase positiva : {p_class:.3f}")
     print(f"Clase negativa : {n_class:.3f}")
 
+def plot_roc_curve(model, X_test, y_test):  
+    # Obtener las probabilidades para la clase positiva  
+    y_scores = model.predict_proba(X_test)[:, 1]  
+    
+    # Calcular la curva ROC  
+    fpr, tpr, thresholds = roc_curve(y_test, y_scores)  
+    roc_auc = roc_auc_score(y_test, y_scores)  # Área bajo la curva ROC  
+
+    # Graficar la curva ROC  
+    plt.figure(figsize=(10, 6))  
+    plt.plot(fpr, tpr, color='blue', label='Curva ROC (Área = {:.2f})'.format(roc_auc))  
+    plt.plot([0, 1], [0, 1], color='red', linestyle='--')  # Línea diagonal  
+    plt.xlim([-2, 2])  
+    plt.ylim([-2, 2])  
+    plt.xlabel('Tasa de Falsos Positivos')  
+    plt.ylabel('Tasa de Verdaderos Positivos')  
+    plt.title('Curva ROC')  
+    plt.legend(loc='lower right')  
+    plt.grid()  
+    plt.show()  
+
+def plot_precision_recall_curve(model, X_test, y_test):  
+    # Obtener las probabilidades para la clase positiva  
+    y_scores = model.predict_proba(X_test)[:, 1]  
+    
+    # Calcular la curva de precisión-recall  
+    precision, recall, thresholds = precision_recall_curve(y_test, y_scores)  
+    avg_precision = average_precision_score(y_test, y_scores)  # Promedio de precisión  
+
+    # Graficar la curva de precisión-recall  
+    plt.figure(figsize=(10, 6))  
+    plt.plot(recall, precision, color='blue', label='Curva de Precisión-Recall (Prom. Precisión = {:.2f})'.format(avg_precision))  
+    plt.xlim([-2, 2])  
+    plt.ylim([-2, 2])  
+    plt.xlabel('Recuperación')  
+    plt.ylabel('Precisión')  
+    plt.title('Curva de Precisión-Recall')  
+    plt.legend(loc='lower left')  
+    plt.grid()  
+    plt.show()  
+
+
 y_scores = model.predict_proba(df_test.drop(TARGET, axis=1))[:, 1]  
 
 best_thr = find_best_threshold()
@@ -58,15 +102,14 @@ worst_thr = 0.5
 y_pred_custom_best = np.array((y_scores >= best_thr).astype(int))
 print(f"Cantidad de 1s para el mejor umbral : {np.sum(y_pred_custom_best==1)}")
 print(f"Cantidad de 0s para el mejor umbral : {np.sum(y_pred_custom_best==0)}")
+
 y_pred_custom_worst = np.array((y_scores >= worst_thr).astype(int))
 print(f"Cantidad de 1s para el peor umbral : {np.sum(y_pred_custom_worst==1)}")
 print(f"Cantidad de 0s para el peor umbral : {np.sum(y_pred_custom_worst==0)}")
+
 y_pred = model.predict(df_test.drop(TARGET, axis=1))
 print(f"Cantidad de 1s para el umbral clasico: {np.sum(y_pred==1)}")
 print(f"Cantidad de 0s para el umbral clasico: {np.sum(y_pred==0)}")
 
-
-
-
-
-
+plot_roc_curve(model, df_test.drop(TARGET, axis=1), df_test[TARGET])
+plot_precision_recall_curve(model, df_test.drop(TARGET, axis=1), df_test[TARGET])
